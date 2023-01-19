@@ -925,7 +925,7 @@ $(window).on('load', function() {
   /**
    * Loads the basemap and adds it to the map
    */
-  function addBaseMap() {
+  /**function addBaseMap() {
     var basemap = trySetting('_tileProvider', 'CartoDB.Positron');
     L.tileLayer.provider(basemap, {
       maxZoom: 18
@@ -933,7 +933,18 @@ $(window).on('load', function() {
     L.control.attribution({
       position: trySetting('_mapAttribution', 'bottomright')
     }).addTo(map);
-  }
+  }**/
+  
+  function addBaseMap() {
+  var basemap = L.tileLayer.wms('http://www502.regione.toscana.it/ows_ctr/com.rt.wms.RTmap/ows?map=owsctr&',  {
+    layers: 'rt_ctr.10k',
+    format: 'image/png',
+    transparent: true,
+    attribution: "Sfondo: Geoscopio Regione Toscana",
+    crs: L.CRS.EPSG3003
+}).addTo(map); 
+}
+  
 
   /**
    * Returns the value of a setting s
